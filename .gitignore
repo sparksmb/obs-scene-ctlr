@@ -1,0 +1,7 @@
+/state/
+/run/
+/logs/
+/.bundle/
+/vendor/bundle/
+*.gem
+.DS_Store

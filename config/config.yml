@@ -1,0 +1,16 @@
+obs:
+  host: "192.168.4.40"
+  port: 4455
+  password: "fuDWlQ3JBdw8mT5V"
+
+main_scene: "Camera Scene"
+commercial_duration: 30
+
+playlists:
+  main:
+    - "COMM - 01 - Sponsor A"
+    - "COMM - 02 - Sponsor B"
+    - "COMM - 03 - Sponsor C"
+    - "COMM - 04 - Sponsor D"
+    - "COMM - 05 - Sponsor E"
+    - "COMM - 06 - Sponsor F"
