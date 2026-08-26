@@ -6,7 +6,7 @@ RSpec.describe ObsSceneCtlr::Config do
     {
       "obs" => { "host" => "localhost", "port" => 4455, "password" => "secret" },
       "main_scene" => "MAIN CAMERA",
-      "commercial_duration" => 30,
+      "max_commercial_duration" => 30,
       "playlists" => { "main" => %w[A B C] }
     }
   end
@@ -32,7 +32,7 @@ RSpec.describe ObsSceneCtlr::Config do
     expect(config.obs_port).to eq(4455)
     expect(config.obs_password).to eq("secret")
     expect(config.main_scene).to eq("MAIN CAMERA")
-    expect(config.commercial_duration).to eq(30)
+    expect(config.max_commercial_duration).to eq(30)
     expect(config.scenes_for("main")).to eq(%w[A B C])
     expect(config.playlist?("main")).to be true
     expect(config.playlist?("pregame")).to be false
@@ -82,5 +82,40 @@ RSpec.describe ObsSceneCtlr::Config do
     config = described_class.load(path, root_dir: @dir)
 
     expect(config.source_path).to eq(path)
+  end
+
+  it "defaults media_sources to empty and media_source_override to nil when not configured" do
+    path = write_config(valid_data)
+    config = described_class.load(path, root_dir: @dir)
+
+    expect(config.media_sources).to eq({})
+    expect(config.media_source_override("A")).to be_nil
+  end
+
+  it "exposes a configured media_sources override" do
+    data = valid_data.merge("media_sources" => { "A" => "a_audio.mp3" })
+    path = write_config(data)
+    config = described_class.load(path, root_dir: @dir)
+
+    expect(config.media_source_override("A")).to eq("a_audio.mp3")
+    expect(config.media_source_override("B")).to be_nil
+  end
+
+  it "raises when media_sources is not a mapping" do
+    data = valid_data.merge("media_sources" => ["not", "a", "hash"])
+    path = write_config(data)
+
+    expect do
+      described_class.load(path, root_dir: @dir)
+    end.to raise_error(ObsSceneCtlr::ConfigError, /media_sources must be a mapping/)
+  end
+
+  it "raises when a media_sources value is empty" do
+    data = valid_data.merge("media_sources" => { "A" => "" })
+    path = write_config(data)
+
+    expect do
+      described_class.load(path, root_dir: @dir)
+    end.to raise_error(ObsSceneCtlr::ConfigError, /media_sources\['A'\]/)
   end
 end

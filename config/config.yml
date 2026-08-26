@@ -1,16 +1,23 @@
+---
 obs:
-  host: "192.168.4.40"
+  host: 192.168.4.40
   port: 4455
-  password: "fuDWlQ3JBdw8mT5V"
-
-main_scene: "Camera Scene"
-commercial_duration: 30
-
+  password: fuDWlQ3JBdw8mT5V
+main_scene: Camera Scene
+# Safety-net ceiling only (seconds). The controller now detects each
+# commercial's actual end via OBS media status; this value is just the
+# max time to wait before giving up and moving on regardless (e.g. if a
+# media source is set to loop, or detection otherwise fails).
+max_commercial_duration: 120
 playlists:
   main:
-    - "COMM - 01 - Sponsor A"
-    - "COMM - 02 - Sponsor B"
-    - "COMM - 03 - Sponsor C"
-    - "COMM - 04 - Sponsor D"
-    - "COMM - 05 - Sponsor E"
-    - "COMM - 06 - Sponsor F"
+  - FirstBaptist
+  - McDonald
+  - Whataburger
+  - CLife
+  #- Jackrabbit_Live
+# Optional: only needed for a scene that has more than one Media/VLC source,
+# where auto-detection (by input kind) would be ambiguous about which one
+# to watch for end-of-playback. Uncomment and set the exact source name.
+#media_sources:
+#   McDonald: "McDonaldAd"

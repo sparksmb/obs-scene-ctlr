@@ -9,7 +9,7 @@ RSpec.describe ObsSceneCtlr::CLI do
       File.write(@config_path, YAML.dump(
         "obs" => { "host" => "localhost", "port" => 4455, "password" => nil },
         "main_scene" => "MAIN CAMERA",
-        "commercial_duration" => 30,
+        "max_commercial_duration" => 30,
         "playlists" => { "main" => %w[A B C] }
       ))
       example.run
