@@ -1,8 +1,8 @@
 ---
 obs:
-  host: 192.168.4.40
+  host: 127.0.0.1
   port: 4455
-  password: fuDWlQ3JBdw8mT5V
+  password: dRORzwIMKmp2r9IF
 main_scene: Camera Scene
 # Safety-net ceiling only (seconds). The controller now detects each
 # commercial's actual end via OBS media status; this value is just the
@@ -11,10 +11,24 @@ main_scene: Camera Scene
 max_commercial_duration: 120
 playlists:
   main:
+  - Stucky
   - FirstBaptist
-  - McDonald
   - Whataburger
+  - McDonald
+  - WingsOverForney
   - CLife
+  half_time:
+  - DarkSide2
+  - Stucky
+  - BeGreat
+  - FirstBaptist
+  - DarkSide
+  - Whataburger
+  - McDonald
+  - WingsOverForney
+  - NewBuilds
+  - CLife
+  - LegacySponsors
   #- Jackrabbit_Live
 # Optional: only needed for a scene that has more than one Media/VLC source,
 # where auto-detection (by input kind) would be ambiguous about which one

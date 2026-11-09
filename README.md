@@ -109,8 +109,9 @@ Each command has a matching wrapper script in the repo root:
 | Script | Command |
 | --- | --- |
 | `next.sh` | play one commercial |
-| `loop.sh` | start continuous rotation |
-| `stop.sh` | graceful stop |
+| `loop.sh` | start continuous rotation (`main` playlist) |
+| `loop_halftime.sh` | start continuous rotation (`half_time` playlist) |
+| `stop.sh` | graceful stop (whatever's currently running) |
 | `abort.sh` | emergency cut to camera |
 | `reset.sh` | reset rotation |
 | `status.sh` | print status |
